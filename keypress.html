@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Keypress</title>
+
+    <style>
+        body {background-color: slategrey}
+        #container {width: 300px; margin: auto;}
+        #showKey {width: 280px;height: 300px; border: 5px groove orange; margin: auto; font-size: 15em;
+            color: orange; text-align: center; box-sizing: border-box;
+            transition-property:border-color, color;
+            transition-duration:0.1s;
+            transition-timing-function: ease-in-out;}
+        .hover { border-color: white !important; color: white !important;}
+        #userInput {width: 250px; margin: auto; margin-top: 25px;}
+        #userInputText {width: 250px;}
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="showKey">?</div>
+    <div id="userInput">
+        <input type="text" id="userInputText"/>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#userInputText').keydown(function (e) {
+            if(e.keyCode > 47 && e.keyCode < 91) {
+                $('#showKey').empty();
+                $('#showKey').append(e.key);
+                $('#showKey').addClass('hover')
+                setTimeout(function(){
+                    $('#showKey').removeClass('hover')
+                },300);
+            }
+        })
+    })
+</script>
+
+</body>
+</html>
