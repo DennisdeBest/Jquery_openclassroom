@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            margin: 0;
+        }
+        #gauche {
+            float: left;
+            width: 70%;
+            height: 1000px;
+            background-color: #EFECCA;
+        }
+        #droite {
+            background-color: #CEFFF8;
+            height: 1000px;
+            padding : 10px;
+            padding-left: 71%;
+        }
+    </style>
+</head>
+<body>
+<div id="gauche">
+</div>
+<div id="droite">
+    Use these buttons to create the form<br><br>
+    <button id="buttonLabel">Label</button>
+    <button id="buttonText">Text input</button>
+    <button id="buttonButton">Button</button>
+    <button id="buttonRow">New row</button>
+    <button id="clearForm">Delete form</button>
+<hr>
+    <div id="buttonPreview"></div>
+</div>
+
+<script>
+
+    $('#buttonRow').click(function () {
+        $('#gauche').append('<br />')});
+    $('#clearForm').click(function () {
+        $('#gauche').empty()});
+
+
+
+    function addToForm(type) {
+        console.log('label ready');
+        console.log(type);
+        $('#formLabel').click(function () {
+            var text = $('#tempText').val();
+            if(type ==='label')
+            $('#gauche').append(
+                    '<span>'+text+'</span>'
+            );
+            else if(type ==='text')
+                $('#gauche').append(
+                        '<input type="text" id="'+text+'"/>'
+                );
+            else if(type ==='button')
+                $('#gauche').append(
+                        '<button>'+text+'</button>'
+                );
+            $('#buttonPreview').empty();
+        })
+
+    }
+
+    function newLabel(callback) {
+        $('#buttonLabel').click(function () {
+            $('#buttonPreview').append(
+                    '<label for="tempText"> Label text : </label>' +
+                    '<input type="text" id="tempText" name="tempText"/>' +
+                    '<button id="formLabel">Submit</button>');
+            callback('label');
+        });
+    }
+    function newTextInput(callback) {
+        $('#buttonText').click(function () {
+            $('#buttonPreview').append(
+                    '<label for="tempText"> Textfield id : </label>' +
+                    '<input type="text" id="tempText" name="tempText"/>' +
+                    '<button id="formLabel">Submit</button>');
+            callback('text');
+        });
+    }
+    function newButton(callback) {
+        $('#buttonButton').click(function () {
+            $('#buttonPreview').append(
+                    '<label for="tempText"> button text : </label>' +
+                    '<input type="text" id="tempText" name="tempText"/>' +
+                    '<button id="formLabel">Submit</button>');
+            callback('button');
+        });
+    }
+
+
+    newLabel(addToForm);
+    newTextInput(addToForm);
+    newButton(addToForm);
+
+</script>
+</body>
+</html>
