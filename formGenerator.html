@@ -7,98 +7,80 @@
         body {
             margin: 0;
         }
-        #gauche {
+        #left {
             float: left;
-            width: 70%;
+            width: 33%;
             height: 1000px;
-            background-color: #EFECCA;
+            background-color: #c7c7c7;
         }
-        #droite {
-            background-color: #CEFFF8;
+        #middle {float: left; width: 33%; height: 1000px; background-color: ivory;}
+        #formHTML{width: 100%; box-sizing: border-box; height: 1000px;}
+        #right {
+            background-color: #c7c7c7;
             height: 1000px;
             padding : 10px;
-            padding-left: 71%;
+            padding-left: 67%;
+        }
+        button:hover:enabled {
+            box-shadow: 3px 3px 1px #6f4000;
+        }
+        button {
+            color: ivory;
+            border-radius: 0px;
+            background-color: black;
+            border: 2px outset darkorange;
+            padding: 3px;
+        }
+        button:disabled {
+            color: ivory;
+            border-radius: 0px;
+            background-color: gray;
+            border: 1px solid darkorange;
+            padding: 3px;
+        }
+        label {
+            display: inline-block;
+            width: 100px;
+            text-align: right;}
+        h1 {
+            font-family: "Arial";
+            text-align: center;
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-<div id="gauche">
+<div id="left">
+    <h1>Preview</h1>
+    <div id="preview"></div>
 </div>
-<div id="droite">
+<div id="middle">
+    <h1>Code</h1>
+    <div id="formTags">
+    <label>id : </label>
+    <input type="text" id="formID"/>
+    <label>method : </label>
+    <select id="formMethod">
+        <option value="GET">GET</option>
+        <option value="POST">POST</option>
+    </select>
+    <label>Action : </label>
+    <input type="text" id="formAction"/>
+    </div>
+    <textarea id="formHTML"></textarea>
+</div>
+<div id="right">
+    <h1>Controls</h1>
     Use these buttons to create the form<br><br>
-    <button id="buttonLabel">Label</button>
-    <button id="buttonText">Text input</button>
-    <button id="buttonButton">Button</button>
-    <button id="buttonRow">New row</button>
-    <button id="clearForm">Delete form</button>
+    <button id="buttonLabel" class="createButtons">Label</button>
+    <button id="buttonText"  class="createButtons">Text input</button>
+    <button id="buttonButton"  class="createButtons">Button</button>
+    <button id="buttonRow"  class="createButtons">New row</button>
+    <button id="clearForm" >Delete form</button>
 <hr>
     <div id="buttonPreview"></div>
 </div>
 
-<script>
-
-    $('#buttonRow').click(function () {
-        $('#gauche').append('<br />')});
-    $('#clearForm').click(function () {
-        $('#gauche').empty()});
-
-
-
-    function addToForm(type) {
-        console.log('label ready');
-        console.log(type);
-        $('#formLabel').click(function () {
-            var text = $('#tempText').val();
-            if(type ==='label')
-            $('#gauche').append(
-                    '<span>'+text+'</span>'
-            );
-            else if(type ==='text')
-                $('#gauche').append(
-                        '<input type="text" id="'+text+'"/>'
-                );
-            else if(type ==='button')
-                $('#gauche').append(
-                        '<button>'+text+'</button>'
-                );
-            $('#buttonPreview').empty();
-        })
-
-    }
-
-    function newLabel(callback) {
-        $('#buttonLabel').click(function () {
-            $('#buttonPreview').append(
-                    '<label for="tempText"> Label text : </label>' +
-                    '<input type="text" id="tempText" name="tempText"/>' +
-                    '<button id="formLabel">Submit</button>');
-            callback('label');
-        });
-    }
-    function newTextInput(callback) {
-        $('#buttonText').click(function () {
-            $('#buttonPreview').append(
-                    '<label for="tempText"> Textfield id : </label>' +
-                    '<input type="text" id="tempText" name="tempText"/>' +
-                    '<button id="formLabel">Submit</button>');
-            callback('text');
-        });
-    }
-    function newButton(callback) {
-        $('#buttonButton').click(function () {
-            $('#buttonPreview').append(
-                    '<label for="tempText"> button text : </label>' +
-                    '<input type="text" id="tempText" name="tempText"/>' +
-                    '<button id="formLabel">Submit</button>');
-            callback('button');
-        });
-    }
-
-
-    newLabel(addToForm);
-    newTextInput(addToForm);
-    newButton(addToForm);
-
-</script>
+<script src="formGenerator.js"></script>
 </body>
 </html>

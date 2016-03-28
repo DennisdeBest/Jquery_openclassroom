@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="collision.js"></script>
+    <title>Collision</title>
+
+    <style>
+        #game {width: 400px; height: 400px; border :2px double black; z-index: 10; position: absolute;
+        overflow: hidden}
+        .bg {position: relative; z-index: 20; margin-bottom: -5px;}
+        #car1{position: absolute; z-index: 40; left: 180px; top: 5px;}
+        #car2{position: absolute; z-index: 50;}
+
+    </style>
+</head>
+<body>
+
+Hits : <span id="info">0</span>
+<div id="game">
+
+<img src="collision_bg.png" class="bg" id="bg1"/>
+<img src="collision_bg.png" class="bg" id="bg2"/>
+<img src="collision_car1.png" id="car1"/>
+<img src="collision_car2.png" id="car2"/>
+</div>
+</body>
+</html>
